@@ -1,0 +1,24 @@
+выбираю Manual когда создают Web App
+выбираю 3.8 но вообщем-то без разницы, можно и 3.6
+заливаю архив твоего проекта
+разархивирую его
+устанавливаю virtualenv mkvirtualenv --python=python3.8 yatube
+устанавливаю зависимости и debug_toolbar pip install -r requirements.txt && pip install django-debug-toolbar
+редактирую settings.py и добавляю свою домен (pimiento.pythonanywhere.com) в ALLOWED_HOSTS
+меняю source_code в Web на /home/pimiento/hw05_final/yatube
+меняю working_directory на /home/pimiento/hw05_final/yatube (хотя это не обязательно)
+меняю Enter path to a virtualenv, if desired и пишу туда просто название своего виртуального окружения (из пункта 5) yatube
+делаю python manage.py migrate
+редактирую ..._wsgi.py и оставляю там только такое
+import os
+import sys
+path = '/home/pimiento/hw05_final/yatube'
+if path not in sys.path:
+    sys.path.append(path)
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'yatube.settings'
+
+# then:
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+13.  делаю релоад и всё работает :tada:
